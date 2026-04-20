@@ -84,6 +84,17 @@
 
       position = game.size / 2;
 
+      _bulletSpawner = SpawnComponent(
+        period: 0.2,
+        selfPositioning: true,
+        factory: (index) {
+          return Bullet(
+            position: position + Vector2(0, -height / 2),
+          );
+        },
+        autoStart: false,
+      );
+
       game.add(_bulletSpawner);
     }
 
@@ -97,5 +108,28 @@
 
     void stopShooting() {
       _bulletSpawner.timer.stop();
+    }
+  }
+
+  class Bullet extends SpriteAnimationComponent
+      with HasGameReference<SpaceShooterGame> {
+    Bullet({super.position})
+        : super(
+            size: Vector2(25, 50),
+            anchor: Anchor.center,
+          );
+
+    @override
+    Future<void> onLoad() async {
+      await super.onLoad();
+
+      animation = await game.loadSpriteAnimation(
+        'bullet.png',
+        SpriteAnimationData.sequenced(
+          amount: 4,
+          stepTime: 0.2,
+          textureSize: Vector2(8, 16),
+        ),
+      );
     }
   }
