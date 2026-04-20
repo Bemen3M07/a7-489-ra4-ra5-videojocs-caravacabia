@@ -87,14 +87,14 @@ class Player extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
                                                                                                                                                                                             
-    // Carga del sprite sheet del jugador: 4 frames de 32x48 px con 0.2s por frame.                                                                                                         
-    animation = await game.loadSpriteAnimation(                                                                                                                                             
-      'player.png',                                                                                                                                                                         
-      SpriteAnimationData.sequenced(                            
-        amount: 4,                     // Número de frames.                                                                                                                                 
-        stepTime: 0.2,                 // Duración de cada frame (segundos).
-        textureSize: Vector2(32, 48),  // Tamaño de cada frame dentro del sheet.                                                                                                            
-      ),                                                                                                                                                                                    
+    // Imagen estática del pez: 1 frame de 64x64 px (sin animación real).
+    animation = await game.loadSpriteAnimation(
+      'fish.png',
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 1,
+        textureSize: Vector2.all(64),
+      ),
     );                                                                                                                                                                                      
                                                                                                                                                                                             
     // Centramos la nave en la pantalla al empezar.             
@@ -173,13 +173,13 @@ class Enemy extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();                                                                                                                                                                   
   
-    // Sheet del enemigo: 4 frames de 16x16 px escalados a 50x50.                                                                                                                           
-    animation = await game.loadSpriteAnimation(                 
-      'enemy.png',                                                                                                                                                                          
-      SpriteAnimationData.sequenced(                                                                                                                                                        
-        amount: 4,
-        stepTime: 0.2,                                                                                                                                                                      
-        textureSize: Vector2.all(16),                           
+    // Imagen estática del pescador: 1 frame de 64x64 px escalado a 50x50.
+    animation = await game.loadSpriteAnimation(
+      'fisherman.png',
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 1,
+        textureSize: Vector2.all(64),
       ),
     );                                                                                                                                                                                      
   
